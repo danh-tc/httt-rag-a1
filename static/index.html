@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>VieQuAD Search</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; color: #1a1a1a; }
+  h1 { font-size: 1.4rem; }
+  form { display: flex; gap: 8px; margin-bottom: 8px; }
+  input[type="text"] { flex: 1; padding: 8px; font-size: 1rem; }
+  select, button { padding: 8px; font-size: 1rem; }
+  button.secondary { background: #eee; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
+  .meta { color: #666; font-size: 0.85rem; margin-bottom: 16px; }
+  .result { border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; }
+  .result .title { font-weight: 600; }
+  .result .score { color: #2c5282; font-size: 0.85rem; float: right; }
+  .result .body { margin-top: 6px; font-size: 0.95rem; line-height: 1.4; }
+  .empty { color: #888; }
+
+  table.compare { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+  table.compare th, table.compare td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #eee; }
+  .bar-track { background: #f0f0f0; border-radius: 4px; height: 16px; position: relative; min-width: 120px; }
+  .bar-fill { background: #2c5282; height: 100%; border-radius: 4px; }
+  .device-badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .device-cuda { background: #dcfce7; color: #166534; }
+  .device-cpu { background: #fef3c7; color: #92400e; }
+</style>
+</head>
+<body>
+  <h1>Tìm kiếm ngữ nghĩa — VieQuADRetrieval</h1>
+  <form id="search-form">
+    <input type="text" id="query" placeholder="Nhập câu hỏi tiếng Việt..." autofocus>
+    <select id="mode">
+      <option value="bm25">BM25</option>
+      <option value="dense">Dense</option>
+      <option value="hybrid">Hybrid (RRF)</option>
+      <option value="hybrid_rerank" selected>Hybrid + Rerank</option>
+    </select>
+    <button type="submit">Tìm</button>
+    <button type="button" class="secondary" id="compare-btn">So sánh 4 mode</button>
+  </form>
+  <div class="meta" id="meta"></div>
+  <div id="compare"></div>
+  <div id="results"></div>
+
+<script>
+const form = document.getElementById("search-form");
+const resultsEl = document.getElementById("results");
+const metaEl = document.getElementById("meta");
+const compareEl = document.getElementById("compare");
+const ALL_MODES = ["bm25", "dense", "hybrid", "hybrid_rerank"];
+
+function deviceBadge(device) {
+  return `<span class="device-badge device-${device}">${device.toUpperCase()}</span>`;
+}
+
+function renderResults(data) {
+  metaEl.innerHTML = `${data.results.length} kết quả · mode=${data.mode} · server ${data.took_ms.toFixed(0)}ms · ${deviceBadge(data.device)}`;
+
+  if (data.results.length === 0) {
+    resultsEl.innerHTML = '<p class="empty">Không tìm thấy kết quả.</p>';
+    return;
+  }
+  resultsEl.innerHTML = data.results.map(r => `
+    <div class="result">
+      <span class="score">${r.score.toFixed(4)}</span>
+      <div class="title">#${r.doc_id} ${r.title ? "— " + r.title : ""}</div>
+      <div class="body">${r.body}</div>
+    </div>
+  `).join("");
+}
+
+async function runSearch(q, mode) {
+  const res = await fetch(`/search?q=${encodeURIComponent(q)}&mode=${mode}&k=10`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const q = document.getElementById("query").value.trim();
+  const mode = document.getElementById("mode").value;
+  if (!q) return;
+
+  metaEl.textContent = "Đang tìm...";
+  resultsEl.innerHTML = "";
+  compareEl.innerHTML = "";
+
+  try {
+    const data = await runSearch(q, mode);
+    renderResults(data);
+  } catch (err) {
+    metaEl.textContent = `Lỗi: ${err.message}`;
+  }
+});
+
+document.getElementById("compare-btn").addEventListener("click", async () => {
+  const q = document.getElementById("query").value.trim();
+  if (!q) return;
+
+  metaEl.textContent = "Đang so sánh 4 mode...";
+  resultsEl.innerHTML = "";
+  compareEl.innerHTML = "";
+
+  const rows = [];
+  for (const mode of ALL_MODES) {
+    try {
+      const data = await runSearch(q, mode);
+      rows.push({ mode, took_ms: data.took_ms, device: data.device, top: data.results[0] });
+    } catch (err) {
+      rows.push({ mode, took_ms: null, device: "?", error: err.message });
+    }
+  }
+
+  metaEl.textContent = `So sánh latency cho: "${q}"`;
+  const maxMs = Math.max(...rows.map(r => r.took_ms || 0), 1);
+  compareEl.innerHTML = `
+    <table class="compare">
+      <thead><tr><th>Mode</th><th>Thời gian (server)</th><th></th><th>Device</th><th>Top-1</th></tr></thead>
+      <tbody>
+        ${rows.map(r => `
+          <tr>
+            <td>${r.mode}</td>
+            <td>${r.took_ms !== null ? r.took_ms.toFixed(0) + " ms" : "lỗi"}</td>
+            <td><div class="bar-track"><div class="bar-fill" style="width:${r.took_ms ? (r.took_ms / maxMs * 100) : 0}%"></div></div></td>
+            <td>${r.device !== "?" ? deviceBadge(r.device) : "?"}</td>
+            <td>${r.top ? "#" + r.top.doc_id + " (" + r.top.score.toFixed(3) + ")" : (r.error || "-")}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+});
+</script>
+</body>
+</html>
