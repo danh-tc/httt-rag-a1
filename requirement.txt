@@ -1,0 +1,35 @@
+LƯU Ý CHUNG CHO BÀI THỰC HÀNH A1 (Hệ thống search hai tầng)
+Bởi Phạm Đỗ Kim Chi - Thứ Hai, 7 tháng 9 2026, 7:46 PM
+Số lượng các câu trả lời: 0
+1. Về yêu cầu multimodal
+
+Đề bài có ghi multimodal, nhưng đây không phải yêu cầu bắt buộc. Các nhóm có thể chọn một trong ba hướng tùy theo dataset và năng lực của nhóm: text only, image only, hoặc kết hợp cả hai. Nếu làm kết hợp, multimodal có thể nằm ở phía dữ liệu (index cả text lẫn ảnh, truy vấn bằng text) hoặc ở phía đầu vào (cho phép query bằng ảnh, bằng text, hoặc cả hai). Nhóm tự quyết định phạm vi và ghi rõ trong báo cáo.
+
+2. Về dataset
+
+Môn học không yêu cầu dữ liệu lớn hay model lớn, chỉ yêu cầu các em hiểu, phân tích và thiết kế được hệ thống trên dữ liệu sẵn có. Vì vậy:
+
+Ưu tiên dataset nhỏ, dễ kiểm soát test case và dễ làm error analysis.
+Nếu nhóm chọn dataset lớn (ví dụ Recipe1M, Flickr30k, MS COCO...), hãy lấy một subset khoảng vài nghìn đến vài chục nghìn mẫu, nhưng phải đảm bảo tính đa dạng của mẫu được chọn (không lấy toàn một chủng loại, một nguồn).
+Nên chọn dataset có sẵn ground truth cho retrieval (mỗi query gắn với tài liệu đúng), để tính Recall@k, MRR, nDCG@k mà không phải gán nhãn tay. Nếu dataset không có, nhóm phải tự xây bộ query và nhãn, ghi rõ cách xây trong báo cáo.
+Kiểm tra khả năng tải dữ liệu ngay từ đầu. Một số dataset cần đăng ký hoặc link đã không còn hoạt động, khi đó tìm bản mirror trên Hugging Face hoặc Kaggle.
+3. Về model embedding
+
+Không cần train hay fine-tune. Dùng các embedding có sẵn:
+
+Text: sentence-transformers (all-MiniLM, bge, e5...), hoặc API embedding của các nhà cung cấp.
+Ảnh: ViT hoặc các backbone vision pre-trained.
+Cross-modal (text và ảnh chung không gian): CLIP hoặc SigLIP.
+Ghi lại lý do chọn model và trade-off (chất lượng, tốc độ, chi phí) trong báo cáo.
+
+4. Về kiến trúc hai tầng và nơi đặt logic
+
+Tầng 1 (retrieval) trả về top N ứng viên, tầng 2 (rerank) sắp xếp lại. Với PostgreSQL:
+
+pg_search (hoặc tsvector) trả top N theo BM25, pgvector trả top N theo cosine. Việc gộp hai danh sách bằng RRF chỉ là phép cộng điểm nên có thể viết ngay trong SQL, hoặc làm ở backend, tùy nhóm chọn.
+Rerank bằng cross-encoder hay VLM phải chạy model, cần GPU hoặc là batch inference, nên đặt ở service layer chứ không đặt trong database.
+--> Lựa chọn đặt logic ở đâu cũng là một chủ đề tốt để làm ablation study.
+
+5. Về đánh giá
+
+Tối thiểu cần so sánh các cấu hình: BM25 đơn, dense đơn, hybrid (RRF), hybrid có rerank. Báo cáo kèm bảng metric và một vài case phân tích lỗi cụ thể.

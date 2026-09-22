@@ -1,0 +1,25 @@
+{
+  "source": "5CD-AI/Vietnamese-THUIR-T2Ranking-gg-translated dev",
+  "seed": 42,
+  "query_count": 150,
+  "judgment_count": 2384,
+  "unique_judged_document_count": 2381,
+  "grade_counts": {
+    "0": 1011,
+    "1": 407,
+    "2": 672,
+    "3": 294
+  },
+  "binary_relevant_grades": [
+    2,
+    3
+  ],
+  "status": "ready",
+  "corpus_document_count": 2984,
+  "distractor_document_count": 603,
+  "excluded_empty_translation_ids": [
+    "1765",
+    "128060",
+    "350520"
+  ]
+}
