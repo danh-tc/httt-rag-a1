@@ -1,3 +1,26 @@
+Mục tiêu
+
+Xây dựng một hệ tìm kiếm hoàn chỉnh: người dùng tìm bằng CÂU CHỮ hoặc bằng một TẤM ẢNH.
+
+Sản phẩm nộp
+
+Hệ chạy được, demo (link video hoặc app), và báo cáo ngắn.
+
+Các yêu cầu
+
+Chọn dataset ảnh, text, metadata, hoặc multimodal.
+
+Xây dựng hệ thống tìm kiếm ngữ nghĩa. 
+- Input: ảnh hoặc text tự do. 
+- Output: ảnh hoặc text ứng với nội dung truy vấn
+
+Frontend đơn giản gọi hàm tìm kiếm qua API hiển thị top-k ảnh kết quả
+
+Báo cáo freestyle không quá 8 trang (không tính tài liệu tham khảo). Trong đó bắt buộc giải thích ngắn gọn nhưng đầy đủ về dataset, phân tích kết quả tốt/xấu, và các thí nghiệm ablation về các model đã thực nghiệm.
+
+Chuẩn bị slide (optional) và demo báo cáo
+
+
 LƯU Ý CHUNG CHO BÀI THỰC HÀNH A1 (Hệ thống search hai tầng)
 Bởi Phạm Đỗ Kim Chi - Thứ Hai, 7 tháng 9 2026, 7:46 PM
 Số lượng các câu trả lời: 0
