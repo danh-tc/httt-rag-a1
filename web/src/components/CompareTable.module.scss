@@ -1,0 +1,188 @@
+@use "../styles/tokens" as *;
+
+.card {
+  @include card;
+  padding: 20px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  color: $accent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.query {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-top: 2px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: $muted;
+  font-size: 0.78rem;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) minmax(160px, 1.2fr) minmax(160px, 1.5fr);
+  align-items: stretch;
+
+  &.withHits {
+    grid-template-columns: minmax(110px, auto) minmax(150px, 1.1fr) minmax(150px, 1.4fr) minmax(150px, 1fr);
+  }
+
+  // Cells stretch to the row height so the row dividers line up; content is centred inside.
+  > * {
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+    border-top: 1px solid $border;
+    min-width: 0;
+  }
+}
+
+.th {
+  align-items: flex-end !important;
+  color: $muted;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+.mode {
+  font-weight: 600;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.track {
+  display: flex;
+  flex: 1;
+  height: 8px;
+  border-radius: $pill;
+  overflow: hidden;
+  background: $surface-2;
+}
+
+.retrieval {
+  background: $accent;
+}
+
+.rerank {
+  background: $rerank;
+}
+
+.ms {
+  font-family: $mono;
+  font-size: 0.8rem;
+  min-width: 58px;
+  text-align: right;
+}
+
+.grid > .top {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.topTitle {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  font-family: $mono;
+  font-size: 0.72rem;
+  color: $muted;
+}
+
+.hits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.hitCount {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin-right: 2px;
+}
+
+.hitRank {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: $pill;
+  background: $surface-2;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.errorRow {
+  grid-column: 1 / -1;
+  color: $warn;
+}
+
+@media (max-width: $phone) {
+  .grid,
+  .grid.withHits {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .th {
+    display: none;
+  }
+
+  .mode {
+    grid-column: 1 / -1;
+    padding-bottom: 0 !important;
+  }
+
+  .time,
+  .top,
+  .hits {
+    border-top: none !important;
+  }
+}

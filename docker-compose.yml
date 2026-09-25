@@ -1,6 +1,7 @@
 services:
   db:
-    image: pgvector/pgvector:pg16
+    # ParadeDB = Postgres + pg_search (real BM25) + pgvector bundled.
+    image: paradedb/paradedb:0.25.10-pg18
     container_name: httt-rag-a1-db
     environment:
       POSTGRES_USER: rag
@@ -9,8 +10,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - paradedb_data:/var/lib/postgresql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  pgdata:
+  paradedb_data:

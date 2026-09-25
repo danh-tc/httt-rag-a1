@@ -1,0 +1,126 @@
+@use "tokens" as *;
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f3f9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e4e7ef;
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: rgba(79, 70, 229, 0.12);
+  --on-accent: #ffffff;
+  --paragraph: #2563eb;
+  --paragraph-soft: rgba(37, 99, 235, 0.1);
+  --span: #ea580c;
+  --span-soft: rgba(234, 88, 12, 0.1);
+  --rerank: #f59e0b;
+  --good: #16a34a;
+  --good-soft: rgba(22, 163, 74, 0.12);
+  --warn: #b45309;
+  --warn-soft: rgba(245, 158, 11, 0.16);
+  --highlight: #fde68a;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 40px -12px rgba(15, 23, 42, 0.18);
+  --glow: radial-gradient(1200px 400px at 50% -120px, rgba(79, 70, 229, 0.14), transparent 70%);
+}
+
+@mixin dark {
+  color-scheme: dark;
+  --bg: #0b0e16;
+  --surface: #131826;
+  --surface-2: #1a2133;
+  --text: #e6e9f2;
+  --muted: #8f9bb3;
+  --border: #252d42;
+  --accent: #818cf8;
+  --accent-strong: #a5b4fc;
+  --accent-soft: rgba(129, 140, 248, 0.18);
+  --on-accent: #0b0e16;
+  --paragraph: #60a5fa;
+  --paragraph-soft: rgba(96, 165, 250, 0.14);
+  --span: #fb923c;
+  --span-soft: rgba(251, 146, 60, 0.14);
+  --rerank: #fbbf24;
+  --good: #4ade80;
+  --good-soft: rgba(74, 222, 128, 0.14);
+  --warn: #fbbf24;
+  --warn-soft: rgba(251, 191, 36, 0.14);
+  --highlight: rgba(250, 204, 21, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+  --glow: radial-gradient(1200px 400px at 50% -120px, rgba(129, 140, 248, 0.16), transparent 70%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  @include dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: $text;
+  background: var(--glow), $bg;
+  background-repeat: no-repeat;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+mark {
+  background: $highlight;
+  color: inherit;
+  padding: 1px 3px;
+  border-radius: 4px;
+}
+
+code {
+  font-family: $mono;
+  font-size: 0.85em;
+  background: $surface-2;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: $accent-soft;
+}

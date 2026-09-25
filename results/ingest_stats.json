@@ -1,0 +1,38 @@
+{
+  "e5-small": {
+    "model": "intfloat/multilingual-e5-small",
+    "params_m": 117.7,
+    "dim": 384,
+    "max_seq_length": 512,
+    "encode_corpus_s": 2.17,
+    "n_docs": 2490,
+    "device": "cuda:0"
+  },
+  "minilm": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "params_m": 22.7,
+    "dim": 384,
+    "max_seq_length": 256,
+    "encode_corpus_s": 1.14,
+    "n_docs": 2490,
+    "device": "cuda:0"
+  },
+  "e5-base": {
+    "model": "intfloat/multilingual-e5-base",
+    "params_m": 278.0,
+    "dim": 768,
+    "max_seq_length": 512,
+    "encode_corpus_s": 4.71,
+    "n_docs": 2490,
+    "device": "cuda:0"
+  },
+  "bge-m3": {
+    "model": "BAAI/bge-m3",
+    "params_m": 567.8,
+    "dim": 1024,
+    "max_seq_length": 8192,
+    "encode_corpus_s": 17.77,
+    "n_docs": 2490,
+    "device": "cuda:0"
+  }
+}

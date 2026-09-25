@@ -1,39 +1,0 @@
-INFO:     Started server process [27880]
-INFO:     Waiting for application startup.
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  20%|█▉        | 39/199 [00:00<00:00, 387.68it/s]Loading weights:  39%|███▉      | 78/199 [00:00<00:00, 372.73it/s]Loading weights:  58%|█████▊    | 116/199 [00:00<00:00, 375.93it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 641.78it/s]
-Loading weights:   0%|          | 0/393 [00:00<?, ?it/s]Loading weights:   6%|▋         | 25/393 [00:00<00:01, 194.43it/s]Loading weights:  11%|█▏        | 45/393 [00:00<00:02, 163.01it/s]Loading weights:  16%|█▌        | 62/393 [00:00<00:02, 145.15it/s]Loading weights:  20%|█▉        | 77/393 [00:00<00:02, 145.81it/s]Loading weights:  24%|██▍       | 95/393 [00:00<00:01, 151.95it/s]Loading weights:  28%|██▊       | 111/393 [00:00<00:01, 152.72it/s]Loading weights:  37%|███▋      | 146/393 [00:00<00:01, 202.50it/s]Loading weights:  42%|████▏     | 167/393 [00:00<00:01, 202.26it/s]Loading weights:  48%|████▊     | 189/393 [00:01<00:00, 204.32it/s]Loading weights:  58%|█████▊    | 227/393 [00:01<00:00, 255.29it/s]Loading weights: 100%|██████████| 393/393 [00:01<00:00, 340.69it/s]
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:53113 - "GET /search?q=test&mode=bm25&k=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61790 - "GET /search?q=C%C3%B3%20bao%20nhi%C3%AAu%20chi%E1%BA%BFn%20c%C6%A1%20trong%20phi%20%C4%91%E1%BB%99i%20Iraq%20khi%20t%E1%BA%A9u%20tho%C3%A1t%20sang%20Iran?&mode=hybrid_rerank&k=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52994 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52994 - "GET /favicon.ico HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49655 - "GET /search?q=Con%20ch%C3%B3%20m%C3%A0u%20g%C3%AC%3F&mode=bm25&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63159 - "GET /search?q=test&mode=bm25&k=1 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51791 - "GET /search?q=Con%20ch%C3%B3%20m%C3%A0u%20g%C3%AC%3F&mode=dense&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59585 - "GET /search?q=Con%20ch%C3%B3%20m%C3%A0u%20g%C3%AC%3F&mode=hybrid&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59585 - "GET /search?q=Con%20ch%C3%B3%20m%C3%A0u%20g%C3%AC%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51459 - "GET /search?q=Ngo%E1%BA%A1i%20tr%E1%BB%AB%20c%C3%A1i%20t%C3%AAn%20Paname%2C%20Paris%20c%C3%B2n%20c%C3%B3%20t%C3%AAn%20g%E1%BB%8Di%20kh%C3%A1c%20l%C3%A0%20g%C3%AC%3F&mode=bm25&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:62879 - "GET /search?q=Ngo%E1%BA%A1i%20tr%E1%BB%AB%20c%C3%A1i%20t%C3%AAn%20Paname%2C%20Paris%20c%C3%B2n%20c%C3%B3%20t%C3%AAn%20g%E1%BB%8Di%20kh%C3%A1c%20l%C3%A0%20g%C3%AC%3F&mode=dense&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57050 - "GET /search?q=Ngo%E1%BA%A1i%20tr%E1%BB%AB%20c%C3%A1i%20t%C3%AAn%20Paname%2C%20Paris%20c%C3%B2n%20c%C3%B3%20t%C3%AAn%20g%E1%BB%8Di%20kh%C3%A1c%20l%C3%A0%20g%C3%AC%3F&mode=hybrid&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52614 - "GET /search?q=Ngo%E1%BA%A1i%20tr%E1%BB%AB%20c%C3%A1i%20t%C3%AAn%20Paname%2C%20Paris%20c%C3%B2n%20c%C3%B3%20t%C3%AAn%20g%E1%BB%8Di%20kh%C3%A1c%20l%C3%A0%20g%C3%AC%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59819 - "GET /search?q=T%C3%AAn%20g%E1%BB%8Di%20kh%C3%A1c%20c%E1%BB%A7a%20Paris%20l%C3%A0%20g%C3%AC%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49608 - "GET /search?q=Chi%E1%BA%BFn%20tranh%20V%C3%B9ng%20V%E1%BB%8Bnh&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64958 - "GET /search?q=c%E1%BB%B1c%20b%E1%BA%AFc&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58551 - "GET /search?q=Khi%20ng%C6%B0%E1%BB%9Di%20ch%C3%A2u%20%C3%82u%20%C4%91%E1%BA%B7t%20ch%C3%A2n%20v%C3%A0o%20Canada%2C%20th%C3%AC%20d%C3%A2n%20s%E1%BB%91%20c%E1%BB%A7a%20ng%C6%B0%E1%BB%9Di%20b%E1%BA%A3n%20%C4%91%E1%BB%8Ba%20l%C3%A0%20bao%20nhi%C3%AAu%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55333 - "GET /search?q=Khi%20ng%C6%B0%E1%BB%9Di%20ch%C3%A2u%20%C3%82u%20%C4%91%E1%BA%B7t%20ch%C3%A2n%20v%C3%A0o%20Canada%2C%20th%C3%AC%20d%C3%A2n%20s%E1%BB%91%20c%E1%BB%A7a%20ng%C6%B0%E1%BB%9Di%20b%E1%BA%A3n%20%C4%91%E1%BB%8Ba%20l%C3%A0%20bao%20nhi%C3%AAu%3F&mode=bm25&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55333 - "GET /search?q=Khi%20ng%C6%B0%E1%BB%9Di%20ch%C3%A2u%20%C3%82u%20%C4%91%E1%BA%B7t%20ch%C3%A2n%20v%C3%A0o%20Canada%2C%20th%C3%AC%20d%C3%A2n%20s%E1%BB%91%20c%E1%BB%A7a%20ng%C6%B0%E1%BB%9Di%20b%E1%BA%A3n%20%C4%91%E1%BB%8Ba%20l%C3%A0%20bao%20nhi%C3%AAu%3F&mode=dense&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55333 - "GET /search?q=Khi%20ng%C6%B0%E1%BB%9Di%20ch%C3%A2u%20%C3%82u%20%C4%91%E1%BA%B7t%20ch%C3%A2n%20v%C3%A0o%20Canada%2C%20th%C3%AC%20d%C3%A2n%20s%E1%BB%91%20c%E1%BB%A7a%20ng%C6%B0%E1%BB%9Di%20b%E1%BA%A3n%20%C4%91%E1%BB%8Ba%20l%C3%A0%20bao%20nhi%C3%AAu%3F&mode=hybrid&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:62948 - "GET /search?q=Khi%20ng%C6%B0%E1%BB%9Di%20ch%C3%A2u%20%C3%82u%20%C4%91%E1%BA%B7t%20ch%C3%A2n%20v%C3%A0o%20Canada%2C%20th%C3%AC%20d%C3%A2n%20s%E1%BB%91%20c%E1%BB%A7a%20ng%C6%B0%E1%BB%9Di%20b%E1%BA%A3n%20%C4%91%E1%BB%8Ba%20l%C3%A0%20bao%20nhi%C3%AAu%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64660 - "GET /search?q=Khi%20ng%C6%B0%E1%BB%9Di%20ch%C3%A2u%20%C3%82u%20%C4%91%E1%BA%B7t%20ch%C3%A2n%20v%C3%A0o%20M%E1%BB%B9%2C%20th%C3%AC%20d%C3%A2n%20s%E1%BB%91%20c%E1%BB%A7a%20ng%C6%B0%E1%BB%9Di%20b%E1%BA%A3n%20%C4%91%E1%BB%8Ba%20l%C3%A0%20bao%20nhi%C3%AAu%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55787 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=bm25&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56144 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=dense&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65163 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=hybrid&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:62140 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55634 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=hybrid&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:55634 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=dense&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63988 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50429 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=hybrid_rerank&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52422 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=bm25&k=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60820 - "GET /search?q=Gandhi%20%C4%91%C3%A3%20l%C3%A0m%20nh%E1%BB%AFng%20g%C3%AC%20cho%20%E1%BA%A4n%20%C4%90%E1%BB%99%3F&mode=dense&k=10 HTTP/1.1" 200 OK

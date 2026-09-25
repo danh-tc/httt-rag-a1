@@ -1,0 +1,137 @@
+{
+  "n_docs": 2490,
+  "n_queries": 2048,
+  "n_judged_queries": 2048,
+  "n_articles": 19,
+  "n_by_kind": {
+    "span": 1936,
+    "paragraph": 554
+  },
+  "relevant_per_query": {
+    "2": 2048
+  },
+  "queries_per_paragraph": {
+    "min": 1,
+    "median": 4.0,
+    "mean": 3.7,
+    "max": 6
+  },
+  "doc_length": {
+    "paragraph": {
+      "min": 100,
+      "median": 154.0,
+      "mean": 169.12,
+      "max": 620
+    },
+    "span": {
+      "min": 1,
+      "median": 6.0,
+      "mean": 10.12,
+      "max": 95
+    }
+  },
+  "query_length": {
+    "min": 3,
+    "median": 14.0,
+    "mean": 14.49,
+    "max": 50
+  },
+  "overlap": {
+    "paragraph": {
+      "min": 0.18181818181818182,
+      "median": 0.6875,
+      "mean": 0.68,
+      "max": 1.0
+    },
+    "span": {
+      "min": 0.0,
+      "median": 0.0,
+      "mean": 0.08,
+      "max": 0.7777777777777778
+    }
+  },
+  "per_article": {
+    "Paris": {
+      "paragraph": 89,
+      "span": 232
+    },
+    "Franklin D. Roosevelt": {
+      "paragraph": 71,
+      "span": 247
+    },
+    "Chiến tranh Vùng Vịnh": {
+      "paragraph": 51,
+      "span": 176
+    },
+    "Canada": {
+      "paragraph": 53,
+      "span": 171
+    },
+    "Texas": {
+      "paragraph": 42,
+      "span": 152
+    },
+    "François Mitterrand": {
+      "paragraph": 39,
+      "span": 148
+    },
+    "Mông Cổ": {
+      "paragraph": 40,
+      "span": 146
+    },
+    "Mahatma Gandhi": {
+      "paragraph": 40,
+      "span": 145
+    },
+    "Nouvelle-Calédonie": {
+      "paragraph": 23,
+      "span": 96
+    },
+    "Puerto Rico": {
+      "paragraph": 22,
+      "span": 84
+    },
+    "Đế quốc La Mã Thần thánh": {
+      "paragraph": 17,
+      "span": 73
+    },
+    "Nam Ossetia": {
+      "paragraph": 15,
+      "span": 65
+    },
+    "Thần học": {
+      "paragraph": 8,
+      "span": 37
+    },
+    "Kiến": {
+      "paragraph": 7,
+      "span": 33
+    },
+    "Nước biển": {
+      "paragraph": 9,
+      "span": 29
+    },
+    "Gia cầm": {
+      "paragraph": 7,
+      "span": 30
+    },
+    "Uganda": {
+      "paragraph": 7,
+      "span": 29
+    },
+    "Nội chiến Anh": {
+      "paragraph": 7,
+      "span": 28
+    },
+    "Montréal": {
+      "paragraph": 7,
+      "span": 15
+    }
+  },
+  "found_by_kind": {
+    "bm25": {
+      "paragraph": 0.92333984375,
+      "span": 0.09912109375
+    }
+  }
+}

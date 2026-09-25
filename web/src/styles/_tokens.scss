@@ -1,0 +1,100 @@
+// Design tokens shared by every module: `@use "../styles/tokens" as *;`
+// Colours resolve to CSS custom properties (defined in global.scss) so light/dark switch at runtime.
+
+$bg: var(--bg);
+$surface: var(--surface);
+$surface-2: var(--surface-2);
+$text: var(--text);
+$muted: var(--muted);
+$border: var(--border);
+$accent: var(--accent);
+$accent-strong: var(--accent-strong);
+$accent-soft: var(--accent-soft);
+$on-accent: var(--on-accent);
+$paragraph: var(--paragraph);
+$paragraph-soft: var(--paragraph-soft);
+$span: var(--span);
+$span-soft: var(--span-soft);
+$rerank: var(--rerank);
+$good: var(--good);
+$good-soft: var(--good-soft);
+$warn: var(--warn);
+$warn-soft: var(--warn-soft);
+$highlight: var(--highlight);
+$shadow-sm: var(--shadow-sm);
+$shadow: var(--shadow);
+$shadow-lg: var(--shadow-lg);
+
+$radius-sm: 8px;
+$radius: 14px;
+$radius-lg: 20px;
+$pill: 999px;
+$mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+$phone: 720px;
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+@mixin card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow-sm;
+}
+
+@mixin hint {
+  color: $muted;
+  font-size: 0.875rem;
+}
+
+@mixin focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px $accent-soft;
+  border-color: $accent;
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: $pill;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  transition:
+    background 0.15s $ease,
+    border-color 0.15s $ease,
+    transform 0.15s $ease,
+    box-shadow 0.15s $ease;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $accent;
+  color: $on-accent;
+  box-shadow: 0 6px 16px -6px $accent;
+
+  &:hover:not(:disabled) {
+    background: $accent-strong;
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background: $surface;
+  color: $text;
+  border-color: $border;
+
+  &:hover:not(:disabled) {
+    border-color: $accent;
+    color: $accent;
+  }
+}

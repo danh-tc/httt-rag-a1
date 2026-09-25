@@ -1,0 +1,161 @@
+@use "../styles/tokens" as *;
+
+.intro {
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  color: $accent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 4px 0 6px;
+}
+
+.lead {
+  color: $muted;
+  margin: 0;
+  max-width: 640px;
+}
+
+.sectionTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 36px 0 14px;
+}
+
+// ---- stat tiles ----
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  @media (max-width: $phone) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tile {
+  @include card;
+  position: relative;
+  padding: 16px 18px;
+  overflow: hidden;
+  min-height: 88px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: $border;
+  }
+
+  &.accent::before {
+    background: $accent;
+  }
+
+  &.paragraph::before {
+    background: $paragraph;
+  }
+
+  &.span::before {
+    background: $span;
+  }
+
+  &.loading {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.3s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  color: $muted;
+  font-size: 0.8rem;
+}
+
+// ---- callout ----
+.callout {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: $radius;
+  border: 1px solid color-mix(in srgb, var(--span) 30%, var(--border));
+  background: linear-gradient(135deg, var(--span-soft), transparent 70%), $surface;
+  line-height: 1.8;
+}
+
+.calloutTitle {
+  font-weight: 700;
+  color: $span;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+// ---- figures ----
+.figures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  gap: 16px;
+
+  @media (max-width: $phone) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.figure {
+  @include card;
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    box-shadow 0.2s $ease,
+    transform 0.2s $ease;
+
+  &:hover {
+    box-shadow: $shadow;
+    transform: translateY(-2px);
+  }
+}
+
+.figureImg {
+  // The PNGs are rendered on white; keep them on white in dark mode too.
+  background: #fff;
+  padding: 8px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.caption {
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-top: 1px solid $border;
+}
