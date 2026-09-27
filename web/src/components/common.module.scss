@@ -1,0 +1,254 @@
+@use "../styles/tokens" as *;
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+// ---- kind chip / dot ----
+.kindTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px 2px 8px;
+  border-radius: $pill;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &.paragraph {
+    color: $paragraph;
+    background: $paragraph-soft;
+  }
+
+  &.span {
+    color: $span;
+    background: $span-soft;
+  }
+}
+
+.dotInner {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+
+  &.paragraph {
+    background: $paragraph;
+  }
+
+  &.span {
+    background: $span;
+  }
+}
+
+// ---- badges ----
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: $pill;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.good {
+  background: $good-soft;
+  color: $good;
+}
+
+.warn {
+  background: $warn-soft;
+  color: $warn;
+}
+
+.neutral {
+  background: $surface-2;
+  color: $muted;
+}
+
+// ---- document card ----
+.doc {
+  @include card;
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  animation: rise 0.35s $ease both;
+  transition:
+    box-shadow 0.2s $ease,
+    border-color 0.2s $ease,
+    transform 0.2s $ease;
+
+  // Raise the hovered/focused card so its score tooltip isn't covered by the next card.
+  position: relative;
+
+  &:hover,
+  &:focus-within {
+    z-index: 2;
+  }
+
+  &:hover {
+    box-shadow: $shadow;
+    transform: translateY(-1px);
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  &.hit {
+    border-color: color-mix(in srgb, var(--good) 45%, var(--border));
+    box-shadow:
+      inset 3px 0 0 $good,
+      $shadow-sm;
+
+    .rank {
+      background: $good-soft;
+      color: $good;
+    }
+  }
+
+  &.spanDoc .body {
+    font-style: italic;
+  }
+}
+
+.rank {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: $surface-2;
+  color: $muted;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.docMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.aside {
+  flex: none;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.body {
+  margin-top: 10px;
+  font-size: 0.94rem;
+  color: color-mix(in srgb, var(--text) 86%, var(--muted));
+}
+
+// ---- skeleton ----
+.skeleton {
+  @include card;
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+
+%shimmer {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s linear infinite;
+}
+
+.skRank {
+  @extend %shimmer;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  flex: none;
+}
+
+.skMain {
+  flex: 1;
+  display: grid;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.skLine {
+  @extend %shimmer;
+  height: 11px;
+  border-radius: 6px;
+}
+
+// ---- empty state ----
+.emptyState {
+  text-align: center;
+  padding: 40px 16px;
+  color: $muted;
+}
+
+.emptyIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: $accent-soft;
+  color: $accent;
+  margin-bottom: 12px;
+}
+
+.emptyTitle {
+  color: $text;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.emptyText {
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doc,
+  .skRank,
+  .skLine {
+    animation: none;
+  }
+}

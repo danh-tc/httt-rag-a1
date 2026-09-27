@@ -1,0 +1,139 @@
+@use "../styles/tokens" as *;
+
+.wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: $surface-2;
+  font-family: $mono;
+  font-size: 0.75rem;
+  cursor: help;
+  white-space: nowrap;
+  transition:
+    background 0.15s $ease,
+    box-shadow 0.15s $ease;
+
+  &:hover,
+  &:focus-visible {
+    background: $accent-soft;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $accent;
+  }
+}
+
+.label {
+  color: $accent;
+  font-weight: 600;
+}
+
+.value {
+  color: $text;
+}
+
+.compact .chip {
+  padding: 1px 6px;
+  font-size: 0.7rem;
+}
+
+// ---- tooltip (pure CSS: shown on hover or keyboard focus) ----
+.tip {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(320px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: $surface;
+  border: 1px solid $border;
+  box-shadow: $shadow-lg;
+  font-family: "Be Vietnam Pro", system-ui, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: $text;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.15s $ease,
+    transform 0.15s $ease,
+    visibility 0.15s;
+  pointer-events: none;
+
+  // Small arrow pointing at the chip.
+  &::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 14px;
+    width: 10px;
+    height: 10px;
+    background: $surface;
+    border-left: 1px solid $border;
+    border-top: 1px solid $border;
+    transform: rotate(45deg);
+  }
+}
+
+.compact .tip {
+  right: auto;
+  left: 0;
+
+  &::before {
+    right: auto;
+    left: 14px;
+  }
+}
+
+.wrap:hover .tip,
+.chip:focus-visible + .tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.tipTitle {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.tipRange {
+  align-self: flex-start;
+  font-family: $mono;
+  font-size: 0.72rem;
+  color: $accent;
+  background: $accent-soft;
+  padding: 2px 8px;
+  border-radius: $pill;
+}
+
+.tipBody {
+  color: $text;
+}
+
+.tipNote {
+  color: $muted;
+  border-top: 1px solid $border;
+  padding-top: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tip {
+    transition: none;
+  }
+}

@@ -1,0 +1,137 @@
+@use "styles/tokens" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: saturate(180%) blur(14px);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid $border;
+}
+
+.headerInner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6 55%, #ec4899);
+  box-shadow: 0 6px 16px -6px #6366f1;
+}
+
+.name {
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  color: $muted;
+  font-size: 0.8rem;
+
+  @media (max-width: $phone) {
+    display: none;
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: $pill;
+  background: $surface-2;
+  border: 1px solid $border;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: none;
+    color: $muted;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 7px 14px;
+    border-radius: $pill;
+    white-space: nowrap;
+    transition:
+      background 0.15s $ease,
+      color 0.15s $ease;
+
+    &:hover {
+      color: $text;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  .active {
+    background: $surface;
+    color: $accent;
+    box-shadow: $shadow-sm;
+  }
+
+  @media (max-width: 420px) {
+    span {
+      display: none;
+    }
+  }
+}
+
+.themeButton {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: $pill;
+  border: 1px solid $border;
+  background: $surface;
+  color: $muted;
+  transition:
+    color 0.15s $ease,
+    border-color 0.15s $ease;
+
+  &:hover {
+    color: $accent;
+    border-color: $accent;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+}
+
+.footer {
+  text-align: center;
+  color: $muted;
+  font-size: 0.8rem;
+  padding: 0 16px 32px;
+}

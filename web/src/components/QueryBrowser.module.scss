@@ -1,0 +1,173 @@
+@use "../styles/tokens" as *;
+
+.browser {
+  display: grid;
+  grid-template-columns: minmax(280px, 2fr) 3fr;
+  gap: 16px;
+  align-items: start;
+
+  @media (max-width: $phone) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listPane {
+  @include card;
+  overflow: hidden;
+  position: sticky;
+  top: 80px;
+
+  @media (max-width: $phone) {
+    position: static;
+  }
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid $border;
+  color: $muted;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 4px 0;
+    color: $text;
+  }
+
+  &:focus-within {
+    color: $accent;
+  }
+}
+
+.list {
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 6px;
+
+  button {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 10px;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    transition: background 0.12s $ease;
+
+    &:hover {
+      background: $surface-2;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  .active {
+    background: $accent-soft;
+
+    &:hover {
+      background: $accent-soft;
+    }
+
+    .qid {
+      color: $accent;
+    }
+  }
+}
+
+.qid {
+  flex: none;
+  min-width: 42px;
+  font-family: $mono;
+  font-size: 0.75rem;
+  color: $muted;
+  padding-top: 2px;
+}
+
+.qtext {
+  min-width: 0;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-top: 1px solid $border;
+  font-size: 0.8rem;
+  color: $muted;
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: $pill;
+    border: 1px solid $border;
+    background: $surface;
+
+    &:hover:not(:disabled) {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+}
+
+.detailPane {
+  @include card;
+  padding: 20px;
+  min-height: 240px;
+}
+
+.eyebrow {
+  font-family: $mono;
+  color: $muted;
+  font-size: 0.78rem;
+}
+
+.question {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  margin: 4px 0 14px;
+}
+
+.primary {
+  @include button-primary;
+}
+
+.subheading {
+  margin: 24px 0 10px;
+  color: $muted;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.docId {
+  font-family: $mono;
+  font-size: 0.72rem;
+  color: $muted;
+  align-self: center;
+}
+
+.note {
+  @include hint;
+  margin: 4px 0 0;
+}
+
+.empty {
+  @include hint;
+  padding: 10px;
+}
